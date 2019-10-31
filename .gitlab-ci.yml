@@ -1,3 +1,5 @@
+default:
+  image: ocaml/opam
 
 stages:
   - build
