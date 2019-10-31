@@ -81,7 +81,7 @@ rule instruction = parse
 
   | "MOV" blank (reg as r1) ',' blank (label as l)
     { 
-      MOV_R_AL (get_reg r1, get_cst c)
+      MOV_R_L (get_reg r1, get_cst c)
     }
 
 
