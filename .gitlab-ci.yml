@@ -1,5 +1,5 @@
 default:
-  image: ocaml/opam
+  image: ocaml/opam2
 
 stages:
   - build
@@ -9,7 +9,7 @@ build:
   stage: build
   script:
     - echo "[Building]"
-    - opam pin add ./
+    - opam pin ./
     - opam install eva_asm
 
 test:
