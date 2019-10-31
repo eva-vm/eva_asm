@@ -1,8 +1,9 @@
-
 main:
-  MOV R0, #0
+  MOV R0, #1
   MOV R1, #2
-  LDR R2, test
+  CMP R0, R1
+  MOV R2, test
+  BEQ R2
 
 test:
-  ADD R0, R1
+  MOV R0, R1

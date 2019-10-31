@@ -81,15 +81,9 @@ rule instruction = parse
 
   | "MOV" blank (reg as r1) ',' blank (label as l)
     { 
-      MOV_R_L (get_reg r1, get_cst c)
-    }
-
-
-  | "MOV" blank (reg as r1) ',' blank (label as l)
-    { 
       MOV_R_L (get_reg r1, `Label l)
     }
-
+    
 
   | "LDR" blank (reg as r1) ',' blank '[' (reg as r2) ']'
     { 
