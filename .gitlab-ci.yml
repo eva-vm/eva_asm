@@ -9,7 +9,7 @@ build:
   stage: build
   script:
     - echo "[Building]"
-    - opam pin ./
+    - opam pin add ./
     - opam install eva_asm
 
 test:
