@@ -26,6 +26,8 @@ type t =
   | MOV_R_R   of [ `Reg of int ] * [ `Reg of int ]
   (* MOV R #? *)
   | MOV_R_C   of [ `Reg of int ] * [ `Cst of int ]
+  (* MOV R tag *)
+  | MOV_R_L   of [ `Reg of int ] * [ `Label of string ]
   (* LDR R [R] *)
   | LDR_R_AR  of [ `Reg of int ] * [ `Reg of int ]
   (* LDR R #? *)
@@ -63,6 +65,7 @@ let pprint instr =
   | ADDC_R_C  _ -> print_endline "ADDC"
   | MOV_R_R   _ -> print_endline "MOV"
   | MOV_R_C   _ -> print_endline "MOV"
+  | MOV_R_L   _ -> print_endline "MOV"
   | LDR_R_AR  _ -> print_endline "LDR"
   | LDR_R_AL  _ -> print_endline "LDR"
   | LDR_R_AC  _ -> print_endline "LDR"
