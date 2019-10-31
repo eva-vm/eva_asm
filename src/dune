@@ -1,8 +1,12 @@
 (include_subdirs unqualified)
 
+(library
+  (name eva_parsing)
+  (modules instructions instructions_processing parser))
+
 (executable
   (name main)
   (public_name evasm_test)
   (package eva_asm)
-  (libraries core)
-  (modules instructions instructions_processing parser main))
+  (libraries core eva_parsing)
+  (modules main))
