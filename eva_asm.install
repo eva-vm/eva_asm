@@ -1,0 +1,12 @@
+lib: [
+  "_build/install/default/lib/eva_asm/META"
+  "_build/install/default/lib/eva_asm/dune-package"
+  "_build/install/default/lib/eva_asm/opam"
+]
+bin: [
+  "_build/install/default/bin/evasm_test"
+]
+doc: [
+  "_build/install/default/doc/eva_asm/LICENSE"
+  "_build/install/default/doc/eva_asm/README.md"
+]

@@ -31,7 +31,7 @@ let set_adresses instr_list =
 
 let _ =
   let l = ref [] in
-  let oc = open_out "test.evasm" in
+  let oc = open_out "test.evo" in
   
   while true do
     try
