@@ -32,16 +32,16 @@ let set_adresses instr_list =
 let _ =
   let l = ref [] in
   let oc = open_out "test.evo" in
-  
+
   while true do
     try
       l := !l @ [ Parser.instruction (Lexing.from_channel stdin) ]
     with 
-      | Parser.Eof ->
-        let open Instructions_processing in
-        let instr = set_adresses !l in
-        let process i = to_bin i |> write_to_file oc in
-        List.iter process instr;
-        exit 0
-      | Parser.Error e -> print_endline e
+    | Parser.Eof ->
+      let open Instructions_processing in
+      let instr = set_adresses !l in
+      let process i = to_bin i |> write_to_file oc in
+      List.iter process instr;
+      exit 0
+    | Parser.Error e -> print_endline e
   done

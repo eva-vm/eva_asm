@@ -4,7 +4,6 @@
 
 open Instructions
 
-
 let make_code_4_4 i r f o a b =
   ((i land 0xF) lsl 28)
   lor ((r land 0b1) lsl 27)
