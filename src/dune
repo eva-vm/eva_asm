@@ -2,5 +2,7 @@
 
 (executable
   (name main)
+  (public_name evasm_test)
+  (package eva_asm)
   (libraries core)
   (modules instructions instructions_processing parser main))

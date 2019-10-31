@@ -1,2 +1,6 @@
 (lang dune 1.11)
-(name eva_asm)
+
+(package
+ (name eva_asm)
+ (synopsis "Assembler for EVA")
+ (description ""))
