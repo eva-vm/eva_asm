@@ -1,0 +1,8 @@
+
+main:
+  MOV R0, #0
+  MOV R1, #2
+  LDR R2, test
+
+test:
+  ADD R0, R1
