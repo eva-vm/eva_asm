@@ -21,8 +21,9 @@ let set_adresses instr_list =
   let adr_list = get_adresses instr_list in
   let replace instr =
     match instr with
-    | LDR_R_AL (`Reg r1, `Label s) -> LDR_R_AC (`Reg r1, `Adr (List.assoc s adr_list))
-    | STR_R_AL (`Reg r1, `Label s) -> STR_R_AC (`Reg r1, `Adr (List.assoc s adr_list))
+    | LDR_R_AL  (`Reg r1, `Label s) -> LDR_R_AC (`Reg r1, `Adr (List.assoc s adr_list))
+    | STR_R_AL  (`Reg r1, `Label s) -> STR_R_AC (`Reg r1, `Adr (List.assoc s adr_list))
+    | MOV_R_L   (`Reg r1, `Label s) -> MOV_R_C  (`Reg r1, `Cst (List.assoc s adr_list))
     | _ -> instr
   in
   List.map replace instr_list
