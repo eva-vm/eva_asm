@@ -7,6 +7,7 @@ maintainer: "arthur correnson <arthur.correnson@univ-tlse3.fr>"
 authors: "arthur correnson <arthur.correnson@univ-tlse3.fr>"
 license: "MIT"
 homepage: "https://github.com/eva-vm/eva_asm"
+bug-reports: "https://github.com/eva-vm/eva_asm/issues"
 dev-repo: "git+https://github.com/eva-vm/eva_asm.git"
 depends: [ "ocaml" "ocamlfind" "core" ]
 build: ["dune" "build" "-p" name "-j" jobs]
