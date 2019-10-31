@@ -61,8 +61,8 @@ let to_bin instr =
 
   | MOV_R_R (`Reg r1, `Reg r2) ->
     let instr_code  = 0b0000
-    and reset_code  = 0b0
-    and flag_code   = 0b1
+    and reset_code  = 0b1
+    and flag_code   = 0b0
     and offset_code = 0b00
     in
     make_code_4_4 instr_code reset_code flag_code offset_code r1 r2
@@ -70,7 +70,7 @@ let to_bin instr =
   | MOV_R_C   (`Reg r1, `Cst c) ->
     let instr_code  = 0b0001
     and reset_code  = 0b1
-    and flag_code   = 0b1
+    and flag_code   = 0b0
     and offset_code = 0b00
     in
     make_code_4_16 instr_code reset_code flag_code offset_code r1 c
