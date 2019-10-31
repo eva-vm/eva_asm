@@ -41,6 +41,9 @@ rule instruction = parse
   | blank
     { instruction lexbuf }
 
+  | ';' [^ '\n']+ '\n'
+    { incr_linenum lexbuf; instruction lexbuf }
+
   | (label as l) blank* ':'
     { LABEL (`Label l) }
   
@@ -168,4 +171,3 @@ rule instruction = parse
     { raise Eof }
   | _ as t
     { raise ( Error ("Invalid token " ^ (String.make 1 t) ^ " " ^ (print_position lexbuf)) ) }
-
