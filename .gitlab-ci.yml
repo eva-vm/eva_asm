@@ -3,10 +3,6 @@ default:
   before_script:
     - opam init
     - eval `opam config env`
-<<<<<<< HEAD
-=======
-    - opam install m4
->>>>>>> 920901796f9bd33bbe2248652d4b665370863e5e
 
 stages:
   - build
