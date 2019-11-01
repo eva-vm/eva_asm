@@ -1,5 +1,8 @@
 default:
   image: ocaml/opam2:4.07
+  before_script:
+    - opam init
+    - eval `opam config env`
 
 stages:
   - build
