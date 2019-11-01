@@ -4,16 +4,11 @@ default:
     - opam init
     - eval `opam config env`
     - sudo apt-get -y install m4 make patch libc-dev gcc
-
-stages:
-  - build
-  - test
-
-build:
-  stage: build
-  script:
     - opam pin ./
     - opam install eva_asm
+
+stages:
+  - test
 
 test:
   stage: test
