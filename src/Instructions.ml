@@ -63,6 +63,15 @@ type t =
   
   | PUSH_R    of [ `Reg of int ]
   | POP_R     of [ `Reg of int ]
+
+  (* ----------------------------------------- *)
+  (* -              IN - OUT                  -*)
+  (* ----------------------------------------- *)
+
+  | IN_R       of [ `Reg of int ]
+  | OUT_R      of [ `Reg of int ]
+
+
 (** Type for instructions *)
 
 
@@ -94,3 +103,5 @@ let pprint instr =
   | PUSH_R    _ -> print_endline "PUSH"
   | POP_R     _ -> print_endline "POP"
   | LABEL     _ -> print_endline "LABEL"
+  | IN_R      _ -> print_endline "IN"
+  | OUT_R     _ -> print_endline "OUT"

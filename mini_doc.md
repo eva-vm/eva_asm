@@ -61,6 +61,8 @@ Les programmes sont habituellement chargés en mémoire à l'adresse #0. Toutefo
 | `BNEQ  Rn`     |       1011       |   1   |   1   |   00   | n[4 bits]              |
 | `BLT   Rn`     |       1011       |   1   |   1   |   01   | n[4 bits]              |
 | `BLE   Rn`     |       1011       |   1   |   0   |   01   | n[4 bits]              |
+| `IN    Rn`     |       1111       |   1   |   0   |   00   | n[4 bits]              |
+| `OUT   Rn`     |       1111       |   1   |   1   |   00   | n[4 bits]              |
 
 
 Les op-codes ont une taille fixée de 32 bits. Leur structure est toujours la même.

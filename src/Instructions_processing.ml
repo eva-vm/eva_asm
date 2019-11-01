@@ -204,4 +204,20 @@ let to_bin instr =
     in
     make_code_4_4 instr_code reset_code flag_code offset_code r1 0
   
+  | IN_R (`Reg r1) ->
+    let instr_code  = 0b1111
+    and reset_code  = 0b0
+    and flag_code   = 0b0
+    and offset_code = 0b00
+    in
+    make_code_4_4 instr_code reset_code flag_code offset_code r1 0
+
+  | OUT_R (`Reg r1) ->
+    let instr_code  = 0b1111
+    and reset_code  = 0b0
+    and flag_code   = 0b1
+    and offset_code = 0b00
+    in
+    make_code_4_4 instr_code reset_code flag_code offset_code r1 0
+  
   | _ -> failwith "Non compilable instruction"

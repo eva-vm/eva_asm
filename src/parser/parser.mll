@@ -189,6 +189,16 @@ rule instruction = parse
     {
       BLE_R (get_reg r1)
     }
+  
+  | "IN"  blank (reg as r1)
+    {
+      IN_R (get_reg r1)
+    }
+  
+  | "OUT"  blank (reg as r1)
+    {
+      OUT_R (get_reg r1)
+    }
 
   | eof
     { raise Eof }
