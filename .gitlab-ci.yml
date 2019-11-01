@@ -3,7 +3,7 @@ default:
   before_script:
     - opam init
     - eval `opam config env`
-    - apt get install add m4 make patch libc-dev gcc
+    - apt-get install add m4 make patch libc-dev gcc
 
 stages:
   - build
