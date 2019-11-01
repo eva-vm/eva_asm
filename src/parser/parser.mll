@@ -69,6 +69,29 @@ rule instruction = parse
     { 
       ADDC_R_C (get_reg r1, get_cst c)
     }
+  
+  | "SUB" blank (reg as r1) ',' blank (reg as r2)
+    { 
+      SUB_R_R (get_reg r1, get_reg r2)
+    }
+  
+
+  | "SUB" blank (reg as r1) ',' blank (cst as c)
+    {
+      SUB_R_C (get_reg r1, get_cst c)
+    }
+
+
+  | "SUBC" blank (reg as r1) ',' blank (reg as r2)
+    {
+      SUBC_R_R (get_reg r1, get_reg r2)
+    }
+
+
+  | "SUBC" blank (reg as r1) ',' blank (cst as c)
+    { 
+      SUBC_R_C (get_reg r1, get_cst c)
+    }
 
 
   | "MOV" blank (reg as r1) ',' blank (reg as r2)

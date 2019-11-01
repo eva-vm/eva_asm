@@ -10,48 +10,58 @@ type oper = [
 ]
 (** Type for operands. This type is just a guideline *)
 
-
 type t =
   | LABEL     of [ `Label of string ]
-  (* ADD Rn Rm *)
+  
+  (* ----------------------------------------- *)
+  (* -         Arithmetic operations          -*)
+  (* ----------------------------------------- *)
+  
   | ADD_R_R   of [ `Reg of int ] * [ `Reg of int ]
-  (* ADD Rn #? *)
   | ADD_R_C   of [ `Reg of int ] * [ `Cst of int ]
-  (* ADDC Rn Rm *)
   | ADDC_R_R  of [ `Reg of int ] * [ `Reg of int ]
-  (* ADDC Rn #? *)
   | ADDC_R_C  of [ `Reg of int ] * [ `Cst of int ]
-  (* MOV R R *)
+  
+  | SUB_R_R   of [ `Reg of int ] * [ `Reg of int ]
+  | SUB_R_C   of [ `Reg of int ] * [ `Cst of int ]
+  | SUBC_R_R  of [ `Reg of int ] * [ `Reg of int ]
+  | SUBC_R_C  of [ `Reg of int ] * [ `Cst of int ]
+  
+  (* ----------------------------------------- *)
+  (* -         Register Manipulation          -*)
+  (* ----------------------------------------- *)
+
   | MOV_R_R   of [ `Reg of int ] * [ `Reg of int ]
-  (* MOV R #? *)
   | MOV_R_C   of [ `Reg of int ] * [ `Cst of int ]
-  (* MOV R tag *)
   | MOV_R_L   of [ `Reg of int ] * [ `Label of string ]
-  (* LDR R [R] *)
+
+  (* ----------------------------------------- *)
+  (* -            Load and Store              -*)
+  (* ----------------------------------------- *)
+
   | LDR_R_AR  of [ `Reg of int ] * [ `Reg of int ]
-  (* LDR R #? *)
   | LDR_R_AC  of [ `Reg of int ] * [ `Adr of int ]
-  (* LDR R tag *)
   | LDR_R_AL  of [ `Reg of int ] * [ `Label of string ]
-  (* STR R [R] *)
   | STR_R_AR  of [ `Reg of int ] * [ `Reg of int ]
-  (* STR R #? *)
   | STR_R_AC  of [ `Reg of int ] * [ `Adr of int ]
-  (* STR R tag *)
   | STR_R_AL  of [ `Reg of int ] * [ `Label of string ]
-  (* CMP R R *)
+  
+  (* ----------------------------------------- *)
+  (* -            Conditionnals               -*)
+  (* ----------------------------------------- *)
+  
   | CMP_R_R   of [ `Reg of int ] * [ `Reg of int ]
-  (* CMP R #? *)
   | CMP_R_C   of [ `Reg of int ] * [ `Cst of int ]
-  (* B.. *)
   | BEQ_R     of [ `Reg of int ]
   | BNEQ_R    of [ `Reg of int ]
   | BLT_R     of [ `Reg of int ]
   | BLE_R     of [ `Reg of int ]
 
-  (* PUSH R *)
+  (* ----------------------------------------- *)
+  (* -              PUSH - POP                -*)
+  (* ----------------------------------------- *)
+  
   | PUSH_R    of [ `Reg of int ]
-  (* POP R *)
   | POP_R     of [ `Reg of int ]
 (** Type for instructions *)
 
@@ -62,6 +72,10 @@ let pprint instr =
   | ADD_R_C   _ -> print_endline "ADD"
   | ADDC_R_R  _ -> print_endline "ADDC"
   | ADDC_R_C  _ -> print_endline "ADDC"
+  | SUB_R_R   _ -> print_endline "SUB"
+  | SUB_R_C   _ -> print_endline "SUB"
+  | SUBC_R_R  _ -> print_endline "SUBC"
+  | SUBC_R_C  _ -> print_endline "SUBC"
   | MOV_R_R   _ -> print_endline "MOV"
   | MOV_R_C   _ -> print_endline "MOV"
   | MOV_R_L   _ -> print_endline "MOV"

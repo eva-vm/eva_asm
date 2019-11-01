@@ -26,6 +26,26 @@ let%test _ =
 
 
 let%test _ =
+  let instr = "SUB R0, R1\n" in
+  parse_string instr = SUB_R_R (`Reg 0, `Reg 1)
+
+
+let%test _ =
+  let instr = "SUB R0, #1\n" in
+  parse_string instr = SUB_R_C (`Reg 0, `Cst 1)
+
+
+let%test _ =
+  let instr = "SUBC R0, R1\n" in
+  parse_string instr = SUBC_R_R (`Reg 0, `Reg 1)
+
+
+let%test _ =
+  let instr = "SUBC R0, #1\n" in
+  parse_string instr = SUBC_R_C (`Reg 0, `Cst 1)
+
+
+let%test _ =
   let instr = "MOV R0, R1\n" in
   parse_string instr = MOV_R_R (`Reg 0, `Reg 1)
 

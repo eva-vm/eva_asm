@@ -44,6 +44,10 @@ Les programmes sont habituellement chargés en mémoire à l'adresse #0. Toutefo
 | `ADD   Rn Val` |       0001       |   0   |   0   |   ..   | n[4 bits] val[16 bits] |
 | `ADDC  Rn Rm`  |       0000       |   0   |   1   |   ..   | n[4 bits] m[4 bits]    |
 | `ADDC  Rn Val` |       0001       |   0   |   1   |   ..   | n[4 bits] val[16 bits] |
+| `SUB   Rn Rm`  |       0011       |   0   |   0   |   ..   | n[4 bits] m[4 bits]    |
+| `SUB   Rn Val` |       0111       |   0   |   0   |   ..   | n[4 bits] val[16 bits] |
+| `SUBC  Rn Rm`  |       0011       |   0   |   1   |   ..   | n[4 bits] m[4 bits]    |
+| `SUBC  Rn Val` |       0111       |   0   |   1   |   ..   | n[4 bits] val[16 bits] |
 | `MOV   Rn Rm`  |       0000       |   1   |   0   |   ..   | n[4 bits] m[4 bits]    |
 | `MOV   Rn Val` |       0001       |   1   |   0   |   ..   | n[4 bits] val[16 bits] |
 | `PUSH  Rn`     |       0010       |   0   |   0   |   00   | n[4 bits]              |

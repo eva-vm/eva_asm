@@ -59,6 +59,39 @@ let to_bin instr =
     in
     make_code_4_16 instr_code reset_code flag_code offset_code r1 c
 
+  | SUB_R_R (`Reg r1, `Reg r2) ->
+    let instr_code  = 0b0011
+    and reset_code  = 0b0
+    and flag_code   = 0b0
+    and offset_code = 0b00
+    in
+    make_code_4_4 instr_code reset_code flag_code offset_code r1 r2
+
+  | SUB_R_C (`Reg r1, `Cst c) ->
+    let instr_code  = 0b0111
+    and reset_code  = 0b0
+    and flag_code   = 0b0
+    and offset_code = 0b00
+    in
+    make_code_4_16 instr_code reset_code flag_code offset_code r1 c
+
+  | SUBC_R_R (`Reg r1, `Reg r2) ->
+    let instr_code  = 0b0011
+    and reset_code  = 0b0
+    and flag_code   = 0b1
+    and offset_code = 0b00
+    in
+    make_code_4_4 instr_code reset_code flag_code offset_code r1 r2
+
+  | SUBC_R_C (`Reg r1, `Cst c) ->
+    let instr_code  = 0b0111
+    and reset_code  = 0b0
+    and flag_code   = 0b1
+    and offset_code = 0b00
+    in
+    make_code_4_16 instr_code reset_code flag_code offset_code r1 c
+
+
   | MOV_R_R (`Reg r1, `Reg r2) ->
     let instr_code  = 0b0000
     and reset_code  = 0b1
