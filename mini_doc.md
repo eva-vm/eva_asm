@@ -10,8 +10,8 @@ La machine virtuelle eva (cf [description](../../README.md)) est fournie avec un
 Eva est une machine virtuelle à registres. Elle comporte précisément 16 registres de 32 bits chacuns dont les rôles sont donnés par la convention suivante :
 
 + R0 : général + _syscall_
-+ R1 : _flags_
-+ R2-11 : général
++ R1-10 : général
++ R11 : _flag_
 + R12 : _frame pointer_   [fp]
 + R13 : _stack pointer_   [sp]
 + R14 : _link register_   [lp]
