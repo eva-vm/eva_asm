@@ -3,6 +3,7 @@ default:
   before_script:
     - opam init
     - eval `opam config env`
+    - apt get install add m4 make patch libc-dev gcc
 
 stages:
   - build
@@ -11,13 +12,11 @@ stages:
 build:
   stage: build
   script:
-    - echo "[Building]"
     - opam pin ./
     - opam install eva_asm
 
 test:
   stage: test
   script:
-    - echo "[Testing]"
     - dune runtest
   
