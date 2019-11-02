@@ -1,5 +1,6 @@
 open Eva_parsing
 open Instructions
+open Sys
 open Filename
 
 
@@ -33,26 +34,6 @@ let set_adresses instr_list =
   |> List.filter (function LABEL _ -> false | _ -> true)
 
 
-(* let _ =
-  let l = ref [] in
-  let oc = open_out "test.evo" in
-  (* let ic = open_in "test.evasm" in *)
-  let lexbuf = Lexing.from_channel stdin in
-
-  while true do
-    try
-      l := !l @ [ Parser.instruction  lexbuf ]
-    with
-    | Parser.Eof ->
-      let open Instructions_processing in
-      let instr = set_adresses !l in
-      let process i = to_bin i |> write_to_file oc in
-      List.iter process instr;
-      List.iter pprint !l;
-      exit 0
-    | Parser.Error e -> failwith e
-  done *)
-
 let do_assemble in_chan out_chan =
     let instructions = ref [] in
     let lexbuf = Lexing.from_channel in_chan in
@@ -74,7 +55,7 @@ exception IO_error of string
 
 let get_output_name f =
   if check_suffix f "evasm" then (
-    concat (chop_suffix f "evasm") ".evo"
+    concat (getcwd ())  ((chop_suffix (basename f) "evasm") ^ "evo")
   ) else (
     raise (IO_error "Input files should have extension .evasm")
   )
