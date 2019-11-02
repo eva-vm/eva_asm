@@ -4,9 +4,11 @@
   (name eva_parsing)
   (modules instructions instructions_processing parser))
 
+(documentation)
+
 (executable
   (name cli)
   (public_name evasm_test)
   (package eva_asm)
   (libraries core eva_parsing cmdliner)
-  (modules utils cli))
+  (modules assembler cli))

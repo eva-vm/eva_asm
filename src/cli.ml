@@ -1,6 +1,5 @@
-
 open Cmdliner
-open Utils
+open Assembler
 
 let input_file =
   let doc = "The input assembly file" in

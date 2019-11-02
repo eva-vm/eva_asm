@@ -1,9 +1,11 @@
 open Eva_parsing
-open Instructions
+open Eva_parsing.Instructions
 open Sys
 open Filename
 
-
+(**
+  [write_to_file output_channel opcode] write [opcode] in the [output_channel].
+  *)
 let write_to_file oc i =
   output_char oc (char_of_int ((i lsr 24) land 0xFF));
   output_char oc (char_of_int ((i lsr 16) land 0xFF));
@@ -11,16 +13,22 @@ let write_to_file oc i =
   output_char oc (char_of_int (i land 0xFF))
 
 
+(**
+  [get_adresses instr_list] build an assocation table label -> adresses 
+  for a sequence of assembly instructions.
+  *)
 let get_adresses instr_list =
-  let rec step l i adr_list =
+  let rec step l curr_adr adr_list =
     match l with
     | [] -> adr_list
-    | LABEL (`Label s) :: tail -> step tail i ((s, i)::adr_list)
-    | _ :: tail -> step tail (i+1) adr_list
+    | LABEL (`Label s) :: tail -> step tail curr_adr ((s, curr_adr)::adr_list)
+    | _ :: tail -> step tail (curr_adr+1) adr_list
   in
   step instr_list 0 []
 
-
+(**
+  [set_adresses instr_list] replaces labels in a sequence of instructions by their exact adresses.
+  *)
 let set_adresses instr_list =
   let adr_list = get_adresses instr_list in
   let replace instr =
@@ -33,7 +41,10 @@ let set_adresses instr_list =
   List.map replace instr_list
   |> List.filter (function LABEL _ -> false | _ -> true)
 
-
+(**
+  [do_assemble in_chan out_chan] read assembly code from [in_channel] assemble it and outputs the binary
+  in [out_chan].
+  *)
 let do_assemble in_chan out_chan =
     let instructions = ref [] in
     let lexbuf = Lexing.from_channel in_chan in
