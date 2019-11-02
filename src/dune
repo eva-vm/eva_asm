@@ -5,8 +5,8 @@
   (modules instructions instructions_processing parser))
 
 (executable
-  (name main)
+  (name cli)
   (public_name evasm_test)
   (package eva_asm)
-  (libraries core eva_parsing)
-  (modules main))
+  (libraries core eva_parsing cmdliner)
+  (modules utils cli))

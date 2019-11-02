@@ -9,5 +9,5 @@ license: "MIT"
 homepage: "https://github.com/eva-vm/eva_asm"
 bug-reports: "https://github.com/eva-vm/eva_asm/issues"
 dev-repo: "git+https://github.com/eva-vm/eva_asm.git"
-depends: [ "ocaml" "ocamlfind" "core" "dune" ]
+depends: [ "ocaml" "ocamlfind" "core" "dune" "cmdliner" ]
 build: ["dune" "build" "-p" name "-j" jobs]
