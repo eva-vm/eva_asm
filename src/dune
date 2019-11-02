@@ -1,14 +1,13 @@
 (include_subdirs unqualified)
 
 (library
-  (name eva_parsing)
-  (modules instructions instructions_processing parser))
-
-(documentation)
+  (name eva_lib)
+  (public_name eva_asm.eva_lib)
+  (modules instructions instructions_processing parser assembler))
 
 (executable
   (name cli)
   (public_name evasm_test)
   (package eva_asm)
-  (libraries core eva_parsing cmdliner)
-  (modules assembler cli))
+  (libraries core eva_lib cmdliner)
+  (modules cli))

@@ -1,18 +1,19 @@
 open Cmdliner
-open Assembler
+open Eva_lib.Assembler
 
+(** input file *)
 let input_file =
   let doc = "The input assembly file" in
   let docv = "file.evasm" in
   Arg.(required & pos 0 (some file) None & info [] ~doc ~docv)
 
-
+(** output file *)
 let output_file =
   let doc = "The output file" in
   let docv = "file.evo" in
   Arg.(value & opt (some string) None & info ["o"; "output"] ~doc ~docv)
 
-
+(** main command *)
 let cmd =
   let doc = "Assembler for Eva assembly language" in
   let man = [

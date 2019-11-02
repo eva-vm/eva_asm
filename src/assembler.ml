@@ -1,11 +1,10 @@
-open Eva_parsing
-open Eva_parsing.Instructions
+open Instructions
 open Sys
 open Filename
 
 (**
   [write_to_file output_channel opcode] write [opcode] in the [output_channel].
-  *)
+*)
 let write_to_file oc i =
   output_char oc (char_of_int ((i lsr 24) land 0xFF));
   output_char oc (char_of_int ((i lsr 16) land 0xFF));
@@ -15,8 +14,7 @@ let write_to_file oc i =
 
 (**
   [get_adresses instr_list] build an assocation table label -> adresses 
-  for a sequence of assembly instructions.
-  *)
+*)
 let get_adresses instr_list =
   let rec step l curr_adr adr_list =
     match l with
@@ -27,8 +25,9 @@ let get_adresses instr_list =
   step instr_list 0 []
 
 (**
-  [set_adresses instr_list] replaces labels in a sequence of instructions by their exact adresses.
-  *)
+  [set_adresses instr_list] replaces labels in a sequence of instructions by 
+  their exact adresses.
+*)
 let set_adresses instr_list =
   let adr_list = get_adresses instr_list in
   let replace instr =
@@ -42,9 +41,9 @@ let set_adresses instr_list =
   |> List.filter (function LABEL _ -> false | _ -> true)
 
 (**
-  [do_assemble in_chan out_chan] read assembly code from [in_channel] assemble it and outputs the binary
-  in [out_chan].
-  *)
+  [do_assemble in_chan out_chan] read assembly code from [in_channel] assemble 
+  it and outputs the binary in [out_chan].
+*)
 let do_assemble in_chan out_chan =
     let instructions = ref [] in
     let lexbuf = Lexing.from_channel in_chan in
@@ -64,6 +63,9 @@ let do_assemble in_chan out_chan =
 
 exception IO_error of string
 
+(**
+  Get an automatic name for outputs files.
+*)
 let get_output_name f =
   if check_suffix f "evasm" then (
     concat (getcwd ())  ((chop_suffix (basename f) "evasm") ^ "evo")
@@ -71,12 +73,19 @@ let get_output_name f =
     raise (IO_error "Input files should have extension .evasm")
   )
 
-
+(**
+  Check wether an output name is valid or not. Raise an {!IO_error} if the output name is'nt valid.
+*)
 let check_output_name f =
   if check_suffix f "evo" then f
   else raise (IO_error "Output files should have extension .evo")
 
 
+(**
+  Run the full assembler.
+  @param in_f The input file
+  @param out_f The output file (option)
+*)
 let run in_f out_f =
   match in_f, out_f with
   | f, None ->
