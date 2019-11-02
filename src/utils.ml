@@ -1,5 +1,6 @@
 open Eva_parsing
 open Instructions
+open Sys
 open Filename
 
 
@@ -54,7 +55,7 @@ exception IO_error of string
 
 let get_output_name f =
   if check_suffix f "evasm" then (
-    concat (chop_suffix f "evasm") ".evo"
+    concat (getcwd ())  ((chop_suffix (basename f) "evasm") ^ "evo")
   ) else (
     raise (IO_error "Input files should have extension .evasm")
   )
