@@ -1,6 +1,6 @@
 (**
- * Module for Instructions types
- *)
+  Module for Instructions types
+*)
 
 type oper = [
   | `Reg    of int
@@ -70,8 +70,6 @@ type t =
 
   | IN_R       of [ `Reg of int ]
   | OUT_R      of [ `Reg of int ]
-
-
 (** Type for instructions *)
 
 

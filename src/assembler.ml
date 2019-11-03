@@ -1,9 +1,15 @@
+(**
+  Main module of the assembler
+*)
+
 open Instructions
+open Instructions_processing
 open Sys
 open Filename
 
+
 (**
-  [write_to_file output_channel opcode] write [opcode] in the [output_channel].
+  [write_to_file output_channel opcode] writes [opcode] in the [output_channel].
 *)
 let write_to_file oc i =
   output_char oc (char_of_int ((i lsr 24) land 0xFF));
@@ -13,7 +19,7 @@ let write_to_file oc i =
 
 
 (**
-  [get_adresses instr_list] build an assocation table label -> adresses 
+  [get_adresses instr_list] builds an assocation table (label -> adresse)
 *)
 let get_adresses instr_list =
   let rec step l curr_adr adr_list =
@@ -23,6 +29,7 @@ let get_adresses instr_list =
     | _ :: tail -> step tail (curr_adr+1) adr_list
   in
   step instr_list 0 []
+
 
 (**
   [set_adresses instr_list] replaces labels in a sequence of instructions by 
@@ -40,8 +47,9 @@ let set_adresses instr_list =
   List.map replace instr_list
   |> List.filter (function LABEL _ -> false | _ -> true)
 
+
 (**
-  [do_assemble in_chan out_chan] read assembly code from [in_channel] assemble 
+  [do_assemble in_chan out_chan] reads assembly code from [in_channel] assemble 
   it and outputs the binary in [out_chan].
 *)
 let do_assemble in_chan out_chan =
@@ -52,7 +60,6 @@ let do_assemble in_chan out_chan =
         instructions := !instructions @ [Parser.instruction lexbuf]
       with
       | Parser.Eof ->
-        let open Instructions_processing in
         let to_output = set_adresses !instructions in
         let process i = to_bin i |> write_to_file out_chan in
         List.iter process to_output;
@@ -72,6 +79,7 @@ let get_output_name f =
   ) else (
     raise (IO_error "Input files should have extension .evasm")
   )
+
 
 (**
   Check wether an output name is valid or not. Raise an {!IO_error} if the output name is'nt valid.

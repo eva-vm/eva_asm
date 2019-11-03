@@ -1,4 +1,4 @@
-open Eva_parsing
+open Eva_lib
 
 let parse_string s =
   let lexbuf = Lexing.from_string s in

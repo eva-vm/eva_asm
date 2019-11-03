@@ -1,7 +1,7 @@
 ; Tests
 
 (library
- (name test_1)
+ (name tests)
  (inline_tests)
- (libraries eva_parsing)
+ (libraries eva_lib)
  (preprocess (pps ppx_inline_test)))
