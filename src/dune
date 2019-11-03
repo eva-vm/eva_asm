@@ -3,7 +3,7 @@
 (library
   (name eva_lib)
   (public_name eva_asm.eva_lib)
-  (modules instructions instructions_processing parser assembler))
+  (modules instructions instructions_processing conversions parser assembler))
 
 (executable
   (name cli)
