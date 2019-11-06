@@ -3,4 +3,4 @@
 (package
  (name eva_asm)
  (synopsis "Assembler for EVA")
- (description ""))
+ (description "Eva Assembler is an efficient and safe Assembler for the Eva Assembly language."))
